@@ -1,0 +1,40 @@
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <h3>Foodu</h3>
+            <p>Discover culinary delights recipes and inspiration in our food haven.</p>
+            <p>Mon - Fri: 8:00 AM - 6:00 PM</p>
+            <p>Saturday: 9:00 AM - 5:00 PM</p>
+        </div>
+        <div>
+            <h4>Explore</h4>
+            <a href="#">Company Profile</a>
+            <a href="#">About</a>
+            <a href="#">Help Center</a>
+            <a href="#">Contact</a>
+        </div>
+        <div>
+            <h4>Contact Info</h4>
+            <p>175 10th Street, Office 375 Berlin, DE 21562</p>
+            <p>+123 34598768</p>
+            <p>food@restan.com</p>
+        </div>
+        <div>
+            <h4>Newsletter</h4>
+            <p>Join our subscribers list to get the latest news and special offers.</p>
+            <form class="newsletter">
+                <input type="email" placeholder="Your email" />
+                <button type="button">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>&copy; Copyright 2026 Foodu. All Rights Reserved</p>
+        <div class="top-social">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</footer>
+<script src="assets/js/main.js"></script>
