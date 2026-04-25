@@ -17,20 +17,20 @@
         </div>
     </div>
     <div class="container nav-wrap">
-        <a href="index.jsp" class="brand">Foodu</a>
+        <a href="<%= request.getContextPath() %>/index.jsp" class="brand">Foodu</a>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
             <span></span><span></span><span></span>
         </button>
         <nav id="mainNav">
-            <a href="index.jsp#home">Home</a>
-            <a href="index.jsp#menu">Menu</a>
-            <a href="index.jsp#popular">Popular</a>
-            <a href="index.jsp#chef">Chef</a>
-            <a href="index.jsp#gallery">Gallery</a>
-            <a href="index.jsp#blog">Blog</a>
+            <a href="<%= request.getContextPath() %>/index.jsp#home">Home</a>
+            <a href="<%= request.getContextPath() %>/index.jsp#menu">Menu</a>
+            <a href="<%= request.getContextPath() %>/index.jsp#popular">Popular</a>
+            <a href="<%= request.getContextPath() %>/index.jsp#chef">Chef</a>
+            <a href="<%= request.getContextPath() %>/index.jsp#gallery">Gallery</a>
+            <a href="<%= request.getContextPath() %>/index.jsp#blog">Blog</a>
         </nav>
         <div class="nav-actions">
-            <a class="btn-ghost" href="login.jsp">Login</a>
+            <a class="btn-ghost" href="<%= request.getContextPath() %>/login.jsp">Login</a>
         </div>
     </div>
 </header>

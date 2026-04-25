@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% request.setAttribute("pageTitle", "Foodu - Login"); %>
+<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +19,24 @@
                         Access your profile, track your orders, and manage your restaurant experience
                         with the same Foodu style.
                     </p>
-                    <a class="btn-link" href="signup.jsp">No account? Create Account <i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="btn-link" href="<%= ctx %>/signup.jsp">No account? Create Account <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="auth-card reveal">
                     <h2>Login</h2>
-                    <form action="#" method="post" class="auth-form">
+                    <% 
+                        String error = request.getParameter("error");
+                        String signup = request.getParameter("signup");
+                        if ("success".equals(signup)) {
+                    %>
+                        <p style="color:#1d7a34; margin-bottom:12px;">Account created successfully. Please login.</p>
+                    <% }
+                        if ("empty".equals(error)) { 
+                    %>
+                        <p style="color:#b00020; margin-bottom:12px;">⚠️ Email and password cannot be empty or contain only spaces.</p>
+                    <% } else if ("1".equals(error)) { %>
+                        <p style="color:#b00020; margin-bottom:12px;">❌ Invalid email or password. Please check your credentials.</p>
+                    <% } %>
+                    <form action="<%= ctx %>/login" method="post" class="auth-form" onsubmit="return validateLoginForm()">
                         <label for="loginEmail">Email Address</label>
                         <input id="loginEmail" name="email" type="email" placeholder="you@example.com" required />
 
@@ -30,8 +44,26 @@
                         <input id="loginPassword" name="password" type="password" placeholder="Enter password" required />
 
                         <button type="submit" class="btn-primary">Login</button>
-                        <a class="btn-ghost auth-switch" href="signup.jsp">Create Account</a>
+                        <a class="btn-ghost auth-switch" href="<%= ctx %>/signup.jsp">Create Account</a>
                     </form>
+                    
+                    <script>
+                        function validateLoginForm() {
+                            const email = document.getElementById('loginEmail').value.trim();
+                            const password = document.getElementById('loginPassword').value.trim();
+                            
+                            if (!email || !password) {
+                                alert('Please enter valid email and password (no empty spaces)');
+                                return false;
+                            }
+                            
+                            // Set the trimmed values before submission
+                            document.getElementById('loginEmail').value = email;
+                            document.getElementById('loginPassword').value = password;
+                            
+                            return true;
+                        }
+                    </script>
                 </div>
             </div>
         </section>

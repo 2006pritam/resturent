@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% request.setAttribute("pageTitle", "Foodu - Sign Up"); %>
+<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,11 +19,19 @@
                         Sign up to start ordering faster, save favorites, and enjoy exclusive
                         restaurant offers with a clean and modern Foodu interface.
                     </p>
-                    <a class="btn-link" href="login.jsp">Already have an account? Login <i class="fa-solid fa-arrow-right"></i></a>
+                    <a class="btn-link" href="<%= ctx %>/login.jsp">Already have an account? Login <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="auth-card reveal">
                     <h2>Sign Up</h2>
-                    <form action="#" method="post" class="auth-form">
+                    <% 
+                        String error = request.getParameter("error");
+                        if ("empty".equals(error)) { 
+                    %>
+                        <p style="color:#b00020; margin-bottom:12px;">Please fill all fields with valid values.</p>
+                    <% } else if ("exists".equals(error)) { %>
+                        <p style="color:#b00020; margin-bottom:12px;">An account with this email already exists.</p>
+                    <% } %>
+                    <form action="<%= ctx %>/signup" method="post" class="auth-form">
                         <label for="signName">Full Name</label>
                         <input id="signName" name="name" type="text" placeholder="Your full name" required />
 

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<% String ctx = request.getContextPath(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWix+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkR4j8l9ggpc8X+Ytst4yBo/hH+8FkY+gR0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="<%= ctx %>/assets/css/style.css" />
 </head>
 <body>
     <header class="site-header">
@@ -41,7 +42,7 @@
                     <i class="fa-solid fa-moon"></i>
                     <span class="toggle-text">Dark mode</span>
                 </button>
-                <a class="btn-ghost" href="login.jsp">Login</a>
+                <a class="btn-ghost" href="<%= ctx %>/login.jsp">Login</a>
             </div>
         </div>
     </header>
@@ -59,7 +60,7 @@
                         Resolve parties but why she shewing know.
                     </p>
                     <div class="hero-actions">
-                        <a href="login.jsp" class="btn-primary">Order Now</a>
+                        <a href="<%= ctx %>/login.jsp" class="btn-primary">Order Now</a>
                         <a href="#menu" class="btn-link">Explore Menu <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -339,6 +340,6 @@
         <span>Top</span>
     </button>
 
-    <script src="assets/js/main.js"></script>
+    <script src="<%= ctx %>/assets/js/main.js"></script>
 </body>
 </html>
