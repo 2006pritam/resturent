@@ -23,13 +23,9 @@
                 </div>
                 <div class="auth-card reveal">
                     <h2>Sign Up</h2>
-                    <% 
-                        String error = request.getParameter("error");
-                        if ("empty".equals(error)) { 
-                    %>
-                        <p style="color:#b00020; margin-bottom:12px;">Please fill all fields with valid values.</p>
-                    <% } else if ("exists".equals(error)) { %>
-                        <p style="color:#b00020; margin-bottom:12px;">An account with this email already exists.</p>
+                    <% String error = (String) request.getAttribute("error"); %>
+                    <% if (error != null && !error.trim().isEmpty()) { %>
+                        <p class="auth-alert auth-alert-error"><%= error %></p>
                     <% } %>
                     <form action="<%= ctx %>/signup" method="post" class="auth-form">
                         <label for="signName">Full Name</label>
@@ -39,7 +35,12 @@
                         <input id="signEmail" name="email" type="email" placeholder="you@example.com" required />
 
                         <label for="signPassword">Password</label>
-                        <input id="signPassword" name="password" type="password" placeholder="Create password" required />
+                        <div class="password-field">
+                            <input id="signPassword" name="password" type="password" placeholder="Create password" required />
+                            <button type="button" class="password-toggle" data-toggle-password="signPassword" aria-label="Show password" title="Show password">
+                                <span class="password-eye-icon" aria-hidden="true">&#128065;</span>
+                            </button>
+                        </div>
 
                         <button type="submit" class="btn-primary">Create Account</button>
                     </form>
