@@ -978,6 +978,33 @@ body[data-theme="dark"] .auth-form input {
     color: var(--ink);
 }
 
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 3rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle:hover {
+    color: var(--primary);
+}
+
 .auth-form input:focus {
     outline: none;
     border-color: var(--primary);

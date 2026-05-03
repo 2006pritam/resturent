@@ -26,9 +26,14 @@
                     <% 
                         String error = request.getParameter("error");
                         String signup = request.getParameter("signup");
+                        String reset = request.getParameter("reset");
                         if ("success".equals(signup)) {
                     %>
                         <p style="color:#1d7a34; margin-bottom:12px;">Account created successfully. Please login.</p>
+                    <% }
+                        if ("success".equals(reset)) {
+                    %>
+                        <p style="color:#1d7a34; margin-bottom:12px;">Password updated successfully. Please login with your new password.</p>
                     <% }
                         if ("empty".equals(error)) { 
                     %>
@@ -44,6 +49,7 @@
                         <input id="loginPassword" name="password" type="password" placeholder="Enter password" required />
 
                         <button type="submit" class="btn-primary">Login</button>
+                        <a class="btn-link" href="<%= ctx %>/reset-password.jsp">Forgot password? Reset it <i class="fa-solid fa-arrow-right"></i></a>
                         <a class="btn-ghost auth-switch" href="<%= ctx %>/signup.jsp">Create Account</a>
                     </form>
                     

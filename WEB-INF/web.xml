@@ -26,6 +26,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <servlet-class>com.resturent.servlet.ResetPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResetPasswordServlet</servlet-name>
+        <url-pattern>/reset-password</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>LegacyPathServlet</servlet-name>
         <servlet-class>com.resturent.servlet.LegacyPathServlet</servlet-class>
     </servlet>

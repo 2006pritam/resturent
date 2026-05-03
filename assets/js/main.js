@@ -69,6 +69,28 @@ if (backToTop) {
     });
 }
 
+const passwordToggleButtons = document.querySelectorAll("[data-toggle-password]");
+passwordToggleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const targetId = button.getAttribute("data-toggle-password");
+        const targetInput = targetId ? document.getElementById(targetId) : null;
+
+        if (!targetInput) {
+            return;
+        }
+
+        const shouldShow = targetInput.type === "password";
+        targetInput.type = shouldShow ? "text" : "password";
+        button.setAttribute("aria-label", shouldShow ? "Hide password" : "Show password");
+        button.title = shouldShow ? "Hide password" : "Show password";
+
+        const icon = button.querySelector(".password-eye-icon");
+        if (icon) {
+            icon.innerHTML = shouldShow ? "&#128064;" : "&#128065;";
+        }
+    });
+});
+
 const navLinks = document.querySelectorAll('a[href^="#"]');
 navLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
