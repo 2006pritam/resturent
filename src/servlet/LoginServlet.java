@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.resturent.dao.UserDAO;
+import com.resturent.model.User;
 import com.resturent.util.DBUtil;
 
 @WebServlet("/login")
@@ -41,28 +43,23 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        try (Connection con = DBUtil.getConnection();
-             PreparedStatement ps = con.prepareStatement(
-                 "SELECT email FROM users WHERE LOWER(email)=LOWER(?) AND BINARY password=? LIMIT 1"
-             )) {
-
-            ps.setString(1, email);
-            ps.setString(2, password);
-
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute("userEmail", rs.getString("email"));
-                    session.setMaxInactiveInterval(30 * 60);
-                    response.sendRedirect(ctx + "/success.jsp");
-                    return;
-                }
+        try {
+            boolean ok = UserDAO.authenticate(email, password);
+            if (ok) {
+                User u = UserDAO.findByEmail(email);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("userEmail", u.getEmail());
+                session.setAttribute("userName", u.getName());
+                session.setMaxInactiveInterval(30 * 60);
+                response.sendRedirect(ctx + "/user/dashboard");
+                return;
             }
 
             response.sendRedirect(ctx + "/login.jsp?error=1");
 
         } catch (Exception e) {
-            throw new ServletException("Login failed due to server error", e);
+            log("Login failed due to server error", e);
+            response.sendRedirect(ctx + "/login.jsp?error=server");
         }
     }
 

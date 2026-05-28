@@ -27,26 +27,42 @@
                         String error = request.getParameter("error");
                         String signup = request.getParameter("signup");
                         String reset = request.getParameter("reset");
+                        String logout = request.getParameter("logout");
                         if ("success".equals(signup)) {
                     %>
-                        <p style="color:#1d7a34; margin-bottom:12px;">Account created successfully. Please login.</p>
+                        <p style="color:#1d7a34; margin-bottom:12px;">✓ Account created successfully. Please login.</p>
                     <% }
                         if ("success".equals(reset)) {
                     %>
-                        <p style="color:#1d7a34; margin-bottom:12px;">Password updated successfully. Please login with your new password.</p>
+                        <p style="color:#1d7a34; margin-bottom:12px;">✓ Password reset successfully. Please login with your new password.</p>
+                    <% }
+                        if ("1".equals(logout)) {
+                    %>
+                        <p style="color:#1d7a34; margin-bottom:12px;">✓ You are logged out successfully.</p>
                     <% }
                         if ("empty".equals(error)) { 
                     %>
                         <p style="color:#b00020; margin-bottom:12px;">⚠️ Email and password cannot be empty or contain only spaces.</p>
                     <% } else if ("1".equals(error)) { %>
                         <p style="color:#b00020; margin-bottom:12px;">❌ Invalid email or password. Please check your credentials.</p>
+                    <% } else if ("auth".equals(error)) { %>
+                        <p style="color:#b00020; margin-bottom:12px;">⚠️ Please login first to access the dashboard.</p>
+                    <% } else if ("server".equals(error)) { %>
+                        <p style="color:#b00020; margin-bottom:12px;">❌ Unable to connect to database. Check MySQL is running and DB settings are correct.</p>
                     <% } %>
                     <form action="<%= ctx %>/login" method="post" class="auth-form" onsubmit="return validateLoginForm()">
                         <label for="loginEmail">Email Address</label>
                         <input id="loginEmail" name="email" type="email" placeholder="you@example.com" required />
 
                         <label for="loginPassword">Password</label>
-                        <input id="loginPassword" name="password" type="password" placeholder="Enter password" required />
+                        <div class="password-field">
+                            <input id="loginPassword" name="password" type="password" placeholder="Enter password" required />
+                            <button type="button" class="password-toggle" data-toggle-password="loginPassword" aria-label="Show password" title="Show password">
+                                <span class="password-eye-icon" aria-hidden="true">&#128065;</span>
+                            </button>
+                        </div>
+
+                        <a href="<%= ctx %>/forgot-password.jsp" class="forgot-link" style="display: block; text-align: right; margin-bottom: 16px; font-size: 14px; color: #e63946; text-decoration: none;">Forgot Password?</a>
 
                         <button type="submit" class="btn-primary">Login</button>
                         <a class="btn-link" href="<%= ctx %>/reset-password.jsp">Forgot password? Reset it <i class="fa-solid fa-arrow-right"></i></a>
